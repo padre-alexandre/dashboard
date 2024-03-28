@@ -245,7 +245,7 @@ def graficos_semana(valor_por_semana, aulas_por_professor):
 
 
             st.dataframe(aulas_por_professor)
-            aulas_por_professor2 = aulas_por_professor.groupby(['Área']).mean().reset_index()
+            aulas_por_professor2 = aulas_por_professor.groupby('Área').mean().reset_index()
 
             df_plot = aulas_por_professor2.copy()
 
