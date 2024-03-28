@@ -437,7 +437,7 @@ def mostrar_mentoria(nome, permissao):
                     aux2 = aux[col].mean()
                     st.write(aux2)
                     #st.write(aux)
-                    #medias[col][0] = aux
+                    medias[col][0] = aux2
                     #medias.loc[col] = mentoria_presenca[col][mentoria_presenca[col] > 0].mean()
                 #else:
                     #medias.loc[col] = mentoria_presenca[col].mean()
