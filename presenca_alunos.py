@@ -317,11 +317,11 @@ def tabela_alunos(presenca_por_aluno):
     presenca_por_aluno2['Presença'] = (presenca_por_aluno2['Presença'].replace([np.inf, -np.inf, np.nan], 0) * 100).astype(int).astype(str) + '%'
     
     presenca_por_aluno2['Presença 1ª fase'] = presenca_por_aluno2['Presença 1ª fase'].str.replace(',', '.').astype(float)
-    presenca_por_aluno2['Presença 1ª fase'].replace([pd.np.inf, -pd.np.inf, pd.np.nan], 0, inplace=True)
+    presenca_por_aluno2['Presença 1ª fase'].replace([np.inf, -np.inf, np.nan], 0, inplace=True)
     presenca_por_aluno2['Presença 1ª fase'] = (presenca_por_aluno2['Presença 1ª fase'] * 100).astype(int).astype(str) + '%'
 
     presenca_por_aluno2['Presença 2ª fase'] = presenca_por_aluno2['Presença 2ª fase'].str.replace(',', '.').astype(float)
-    presenca_por_aluno2['Presença 2ª fase'].replace([pd.np.inf, -pd.np.inf, pd.np.nan], 0, inplace=True)
+    presenca_por_aluno2['Presença 2ª fase'].replace([np.inf, -np.inf, np.nan], 0, inplace=True)
     presenca_por_aluno2['Presença 2ª fase'] = (presenca_por_aluno2['Presença 2ª fase'] * 100).astype(int).astype(str) + '%'
 
     # Adiciona um texto acima dos gráficos
