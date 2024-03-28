@@ -396,10 +396,10 @@ def tabela_professores(aulas_por_professor):
            st.write("")
 
     # Closing the table
-    st.markdown("""
-            </tbody>
-        </table>
-    """, unsafe_allow_html=True)
+    #st.markdown("""
+    #        </tbody>
+    #    </table>
+    #""", unsafe_allow_html=True)
 
 def mostrar_controle_aulas():
     

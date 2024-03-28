@@ -389,10 +389,10 @@ def tabela_alunos(presenca_por_aluno):
            st.write("")
 
     # Closing the table
-    st.markdown("""
-            </tbody>
-        </table>
-    """, unsafe_allow_html=True)
+    #st.markdown("""
+    #        </tbody>
+    #    </table>
+    #""", unsafe_allow_html=True)
 
 def mostrar_presenca_alunos():
     
