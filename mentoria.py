@@ -423,6 +423,7 @@ def mostrar_mentoria(nome, permissao):
         numeric_cols = mentoria_presenca.select_dtypes(include='number')
 
         numeric_cols['Nome Completo'] = mentoria_presenca['Nome Completo']
+        st.dataframe(numeric_cols)
 
         medias = numeric_cols.groupby('Nome completo').mean().reset_index()
 
