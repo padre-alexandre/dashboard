@@ -2,6 +2,8 @@ import streamlit as st
 
 st.set_page_config(page_title="Jazz Vestibular", page_icon="", layout="wide")
 
+st.set_option('client.caching', False)
+
 import streamlit.components.v1 as components
 from alunos import mostrar_alunos
 from professores import mostrar_professores

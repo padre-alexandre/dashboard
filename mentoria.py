@@ -15,6 +15,7 @@ import numpy as np
 import datetime
 import pytz
 from logs import escrever_planilha
+import os
 #from dashboard import get_estado, define_estado
 
 # If modifying these scopes, delete the file token.json.
@@ -38,6 +39,7 @@ def get_estado():
         st.session_state.estado = define_estado()
     return st.session_state.estado
 
+'''
 def ler_planilha(SAMPLE_SPREADSHEET_ID, SAMPLE_RANGE_NAME):
   """Shows basic usage of the Sheets API.
   Prints values from a sample spreadsheet.
@@ -80,6 +82,49 @@ def ler_planilha(SAMPLE_SPREADSHEET_ID, SAMPLE_RANGE_NAME):
     var = 1
 
   return values2
+'''
+  
+
+
+def ler_planilha(SAMPLE_SPREADSHEET_ID, SAMPLE_RANGE_NAME):
+    """Shows basic usage of the Sheets API. Prints values from a sample spreadsheet."""
+    
+    creds = None
+    
+    # Define SCOPES
+    SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
+    
+    # Define caminhos dos arquivos de credenciais a partir das variáveis de ambiente
+    credentials_path = os.getenv('GOOGLE_CREDENTIALS_PATH', 'credentials.json')
+    token_path = os.getenv('GOOGLE_TOKEN_PATH', 'token.json')
+    
+    if os.path.exists(token_path):
+        creds = Credentials.from_authorized_user_file(token_path, SCOPES)
+        
+    if not creds or not creds.valid:
+        if creds and creds.expired and creds.refresh_token:
+            creds.refresh(Request())
+        else:
+            flow = InstalledAppFlow.from_client_secrets_file(credentials_path, SCOPES)
+            creds = flow.run_local_server(port=8080)
+            
+        with open(token_path, "w") as token:
+            token.write(creds.to_json())
+
+    try:
+        service = build("sheets", "v4", credentials=creds)
+
+        # Call the Sheets API
+        sheet = service.spreadsheets()
+        result = sheet.values().get(spreadsheetId=SAMPLE_SPREADSHEET_ID, range=SAMPLE_RANGE_NAME).execute()
+
+        values = result.get("values", [])
+        values2 = pd.DataFrame(values[1:], columns=values[0])
+
+    except HttpError as err:
+        var = 1
+
+    return values2
 
 
 
