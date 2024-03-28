@@ -433,7 +433,7 @@ def mostrar_mentoria(nome, permissao):
 
                 if col.startswith('1S'):
                     #aux = mentoria_presenca[col][mentoria_presenca[col] > 0].mean()
-                    aux = mentoria_presenca[[mentoria_presenca[col] > 0]]
+                    aux = mentoria_presenca[[mentoria_presenca['1S1'] > 0]]
                     st.dataframe(aux)
                     #st.write(aux)
                     #medias[col][0] = aux
