@@ -243,6 +243,8 @@ def graficos_semana(valor_por_semana, aulas_por_professor):
             for coluna in colunas_ps:
                 aulas_por_professor[coluna] = pd.to_numeric(aulas_por_professor[coluna].str.replace(',', '.'), errors='coerce')
 
+
+            st.dataframe(aulas_por_professor)
             aulas_por_professor2 = aulas_por_professor.groupby(['Área']).mean().reset_index()
 
             df_plot = aulas_por_professor2.copy()
