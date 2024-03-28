@@ -429,7 +429,7 @@ def mostrar_mentoria(nome, permissao):
 
         st.dataframe(medias)
 
-        medias = mentoria_presenca.mean()
+        #medias = mentoria_presenca.mean()
         for col in mentoria_presenca.columns:
 
             if mentoria_presenca[col].dtype == 'object' and mentoria_presenca[col].str.contains(',').any():
