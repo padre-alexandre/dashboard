@@ -421,7 +421,7 @@ def mostrar_mentoria(nome, permissao):
         medias = pd.DataFrame()
         
         numeric_cols = mentoria_presenca.select_dtypes(include='number')
-
+        st.dataframe(numeric_cols)
         numeric_cols['Nome Completo'] = mentoria_presenca['Nome Completo']
         st.dataframe(numeric_cols)
 
