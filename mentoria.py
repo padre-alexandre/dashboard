@@ -425,7 +425,7 @@ def mostrar_mentoria(nome, permissao):
         numeric_cols['Nome Completo'] = mentoria_presenca['Nome Completo']
         st.dataframe(numeric_cols)
 
-        medias = numeric_cols.groupby('Nome completo').mean().reset_index()
+        medias = numeric_cols.groupby('Nome Completo').mean().reset_index()
 
         st.dataframe(medias)
 
