@@ -373,7 +373,7 @@ def tabela_professores(aulas_por_professor):
     
 
     with st.container():
-        col1, col2, col3 = st.columns([0.01,5,0.01])
+        col1, col2, col3 = st.columns([0.05,5,0.01])
         with col1:
            st.write("")
         with col2:
