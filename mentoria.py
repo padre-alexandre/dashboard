@@ -419,13 +419,6 @@ def mostrar_mentoria(nome, permissao):
 
         medias = pd.DataFrame(columns=mentoria_presenca.columns)
 
-        #numeric_cols = mentoria_presenca.select_dtypes(include='number')
-        #numeric_cols['Nome Completo'] = mentoria_presenca['Nome Completo']
-
-        #medias = numeric_cols.groupby('Nome Completo').mean().reset_index()
-        #medias['Nome Completo'] = medias['Nome Completo'].astype(str)
-        #st.dataframwe()
-        #st.dataframe(mentoria_presenca)
         for col in mentoria_presenca.columns:
 
             if mentoria_presenca[col].dtype == 'object' and mentoria_presenca[col].str.contains(',').any():
@@ -435,14 +428,9 @@ def mostrar_mentoria(nome, permissao):
                     #aux = mentoria_presenca[col][mentoria_presenca[col] > 0].mean()
                     aux = mentoria_presenca[mentoria_presenca[col] > 0]
                     aux2 = aux[col].mean()
-                    #st.write(aux2)
-                    #st.write(aux)
                     medias.loc[0, col] = aux2
-                    #medias.loc[col] = mentoria_presenca[col][mentoria_presenca[col] > 0].mean()
                 else:
                     medias.loc[0, col] = mentoria_presenca[col].mean()
-        st.dataframe(medias)
-        #st.dataframe(mentoria_presenca)
 
         mentoria_presenca = pd.concat([mentoria_presenca, medias], ignore_index=True)
 
@@ -452,126 +440,6 @@ def mostrar_mentoria(nome, permissao):
 
         filtro = (mentoria_presenca['Nome Completo'] == nome_selecionado) | (mentoria_presenca['Nome Completo'] == 'Média')
         mentoria_filtrada = mentoria_presenca[filtro]
-        #t.dataframe(mentoria_filtrada)
-        '''
-        with st.container():
-            col1, col2, col3 = st.columns([1,0.05,1]) 
-            with col1:
-                
-                st.markdown('<div style="height: 50px;"></div>', unsafe_allow_html=True)
-
-                # Adiciona uma caixa colorida acima do primeiro gráfico com texto dentro
-                st.markdown(
-                    """
-                    <div style="background-color: rgba(158, 8, 158, 0.8); color: white; padding: 10px; border-top-left-radius: 10px; border-top-right-radius: 10px; text-align: center;">
-                        Presença nas aulas de 1ª fase x Média
-                    </div>
-                    """,
-                    unsafe_allow_html=True
-                )
-
-                colunas_ps = ['Nome Completo', '1S1', '1S2', '1S3', '1S4', '1S5', '1S6', '1S7', '1S8', '1S9', '1S10', '1S11', '1S12', '1S13', '1S14', '1S15', '1S16', '1S17', '1S18', '1S19', '1S20']
-                colunas_ps2 = ['1S1', '1S2', '1S3', '1S4', '1S5', '1S6', '1S7', '1S8', '1S9', '1S10', '1S11', '1S12', '1S13', '1S14', '1S15', '1S16', '1S17', '1S18', '1S19', '1S20']
-
-                df_plot = mentoria_filtrada[colunas_ps]
-
-                df_plot[colunas_ps2] = df_plot[colunas_ps2].replace(0, np.nan)
-
-                st.dataframe(df_plot)
-
-                # Criar um gráfico de linha
-                fig = go.Figure()
-
-                color_aluno = '#9E089E'
-                color_media = '#FFA73E'
-                
-                for index, row in df_plot.iterrows():
-                    # Substituir 'PS1' por 1, 'PS2' por 2, e assim por diante
-                    x_values = [i for i, col in enumerate(colunas_ps2, 1) if i <= 20]
-
-                    fig.add_trace(go.Scatter(
-                        x=x_values,
-                        y=row[colunas_ps2].values,
-                        mode='lines+markers',
-                        name=row['Nome Completo'],
-                        line=dict(color=color_aluno if index < 21 else color_media),
-                    ))
-                st.write(x_values)
-                fig.update_xaxes(tickvals=list(range(1, 21)))
-
-                # Atualizar layout
-                fig.update_layout(
-                    xaxis=dict(title='Semana', showgrid=False),
-                    yaxis=dict(title='Presença dos alunos (%)', range=[0, 1.05]),
-                    showlegend=True,
-                    height=400, 
-                    width=1200, 
-                    margin=dict(l=5, r=5, b=50, t=50, pad=0),
-                    legend=dict(orientation='h', y=1.02, yanchor='bottom', x=0.5, xanchor='center')
-                )
-
-                fig.update_yaxes(title_text='Presença (%)', tickformat=',.0%')
-                fig.update_xaxes(title_text='Semana')
-
-                # Mostrar o gráfico
-                st.plotly_chart(fig, use_container_width=True)
-
-            with col3:
-
-                st.markdown('<div style="height: 50px;"></div>', unsafe_allow_html=True)
-
-                # Adiciona uma caixa colorida acima do primeiro gráfico com texto dentro
-                st.markdown(
-                    """
-                    <div style="background-color: rgba(158, 8, 158, 0.8); color: white; padding: 10px; border-top-left-radius: 10px; border-top-right-radius: 10px; text-align: center;">
-                        Presença nas aulas de 2ª fase x Média
-                    </div>
-                    """,
-                    unsafe_allow_html=True
-                )
-
-                colunas_ps = ['Nome Completo', '2S1', '2S2', '2S3', '2S4', '2S5', '2S6', '2S7', '2S8', '2S9', '2S10', '2S11', '2S12', '2S13', '2S14', '2S15', '2S16', '2S17', '2S18', '2S19', '2S20']
-                colunas_ps2 = ['2S1', '2S2', '2S3', '2S4', '2S5', '2S6', '2S7', '2S8', '2S9', '2S10', '2S11', '2S12', '2S13', '2S14', '2S15', '2S16', '2S17', '2S18', '2S19', '2S20']
-
-                df_plot = mentoria_filtrada[colunas_ps]
-
-                df_plot[colunas_ps2] = df_plot[colunas_ps2].replace(0, np.nan)
-
-                # Criar um gráfico de linha
-                fig = go.Figure()
-
-                for index, row in df_plot.iterrows():
-                    # Substituir 'PS1' por 1, 'PS2' por 2, e assim por diante
-                    x_values = [i for i, col in enumerate(colunas_ps2, 1) if i <= 20]
-
-                    fig.add_trace(go.Scatter(
-                        x=x_values,
-                        y=row[colunas_ps2].values,
-                        mode='lines+markers',
-                        name=row['Nome Completo'],
-                        line=dict(color=color_aluno if index < 21 else color_media),
-                    ))
-
-                fig.update_xaxes(tickvals=list(range(1, 21)))
-
-                # Atualizar layout
-                fig.update_layout(
-                    xaxis=dict(title='Semana', showgrid=False),
-                    yaxis=dict(title='Presença dos alunos (%)', range=[0, 1.05]),
-                    showlegend=True,
-                    height=400, 
-                    width=1200, 
-                    margin=dict(l=5, r=5, b=50, t=50, pad=0),
-                    legend=dict(orientation='h', y=1.02, yanchor='bottom', x=0.5, xanchor='center')
-                )
-
-                fig.update_yaxes(title_text='Presença (%)', tickformat=',.0%')
-                fig.update_xaxes(title_text='Semana')
-
-                # Mostrar o gráfico
-                st.plotly_chart(fig, use_container_width=True)
-
-        '''
                 
         with st.container():
             col1, col2, col3 = st.columns([0.001, 1, 0.001])
