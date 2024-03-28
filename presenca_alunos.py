@@ -11,7 +11,6 @@ from googleapiclient.errors import HttpError
 from plotly.subplots import make_subplots
 from PIL import Image
 import numpy as np
-from google.auth.transport.requests import Request
 #from dashboard import get_estado, define_estado
 
 # If modifying these scopes, delete the file token.json.
