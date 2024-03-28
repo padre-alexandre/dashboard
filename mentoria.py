@@ -188,7 +188,9 @@ def mostrar_mentoria(nome, permissao):
 
             mentoria_presenca_1fase = mentoria_presenca[mentoria_presenca['Última Semana 1F'] > 0]#.reset_index(drop = True).mean()
             st.dataframe(mentoria_presenca_1fase)
-            mentoria_presenca_1fase = mentoria_presenca[mentoria_presenca['Última Semana 1F'] > 0].reset_index(drop = True).mean()
+            mentoria_presenca_1fase_ = mentoria_presenca_1fase['Última Semana 1F'].mean()
+            st.write(mentoria_presenca_1fase_)
+            #mentoria_presenca_1fase = mentoria_presenca[mentoria_presenca['Última Semana 1F'] > 0].reset_index(drop = True).mean()
             mentoria_presenca_2fase = mentoria_presenca['Última Semana 2F'].reset_index(drop = True).mean()
             #mentoria_presenca_2fase = mentoria_presenca[mentoria_presenca['Última Semana 2F'] > 0].reset_index(drop = True).mean()
         elif opcao_periodo == 'Últimas 4 semanas':
