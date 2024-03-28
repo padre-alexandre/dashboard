@@ -259,9 +259,9 @@ def mostrar_mentoria(nome, permissao):
 
                 if presenca_1_fase_float == 0:
                     st.image('sem_progresso.png', use_column_width=True)
-                elif presenca_1_fase_float < mentoria_presenca_1fase[0]:
+                elif presenca_1_fase_float < mentoria_presenca_1fase_:
                     st.image('estudou.png', use_column_width=True)
-                elif presenca_1_fase_float > mentoria_presenca_1fase[0] and presenca_1_fase_float < 0.9:
+                elif presenca_1_fase_float > mentoria_presenca_1fase_ and presenca_1_fase_float < 0.9:
                     st.image('engajado.png', use_column_width=True)
                 elif presenca_1_fase_float >= 0.9:
                     st.image('destaque.png', use_column_width=True)
