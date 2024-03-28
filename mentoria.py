@@ -418,7 +418,7 @@ def mostrar_mentoria(nome, permissao):
         cor_texto_laranja = '#000000'
 
         medias = pd.DataFrame(columns=mentoria_presenca.columns)
-        st.dataframe(medias)
+
         #numeric_cols = mentoria_presenca.select_dtypes(include='number')
         #numeric_cols['Nome Completo'] = mentoria_presenca['Nome Completo']
 
@@ -434,6 +434,7 @@ def mostrar_mentoria(nome, permissao):
                     medias.loc[col] = mentoria_presenca[col][mentoria_presenca[col] > 0].mean()
                 else:
                     medias.loc[col] = mentoria_presenca[col].mean()
+        st.dataframe(medias)
 
         mentoria_presenca = pd.concat([mentoria_presenca, medias], ignore_index=True)
 
