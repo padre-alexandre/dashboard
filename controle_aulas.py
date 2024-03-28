@@ -399,7 +399,7 @@ def mostrar_controle_aulas():
     
     estado = get_estado()
 
-    locale.setlocale(locale.LC_MONETARY, 'pt_BR')
+    #locale.setlocale(locale.LC_MONETARY, 'pt_BR')
     # Adicione esta linha ao início do seu script, fora de qualquer função específica
     st.markdown('<style>td { border-right: none !important; }</style>', unsafe_allow_html=True)
     #https://docs.google.com/spreadsheets/d/1eAsyur4ioNUC5ckSMDt2sWtfdzroL6MUor23hmV_BE8/edit?usp=sharing
