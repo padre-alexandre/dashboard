@@ -433,9 +433,10 @@ def mostrar_mentoria(nome, permissao):
                 if col.startswith('1S'):
                     aux = mentoria_presenca[col][mentoria_presenca[col] > 0].mean()
                     st.write(aux)
-                    medias.loc[col] = mentoria_presenca[col][mentoria_presenca[col] > 0].mean()
-                else:
-                    medias.loc[col] = mentoria_presenca[col].mean()
+                    medias[col][0] = aux
+                    #medias.loc[col] = mentoria_presenca[col][mentoria_presenca[col] > 0].mean()
+                #else:
+                    #medias.loc[col] = mentoria_presenca[col].mean()
         st.dataframe(medias)
 
         mentoria_presenca = pd.concat([mentoria_presenca, medias], ignore_index=True)
