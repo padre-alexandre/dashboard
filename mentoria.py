@@ -438,6 +438,7 @@ def mostrar_mentoria(nome, permissao):
                 #else:
                     #medias.loc[col] = mentoria_presenca[col].mean()
         st.dataframe(medias)
+        st.dataframe(mentoria_presenca)
 
         mentoria_presenca = pd.concat([mentoria_presenca, medias], ignore_index=True)
 
