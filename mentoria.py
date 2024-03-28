@@ -421,15 +421,10 @@ def mostrar_mentoria(nome, permissao):
         medias = pd.DataFrame()
         
         numeric_cols = mentoria_presenca.select_dtypes(include='number')
-        st.dataframe(numeric_cols)
         numeric_cols['Nome Completo'] = mentoria_presenca['Nome Completo']
-        st.dataframe(numeric_cols)
 
         medias = numeric_cols.groupby('Nome Completo').mean().reset_index()
 
-        st.dataframe(medias)
-
-        #medias = mentoria_presenca.mean()
         for col in mentoria_presenca.columns:
 
             if mentoria_presenca[col].dtype == 'object' and mentoria_presenca[col].str.contains(',').any():
@@ -440,7 +435,6 @@ def mostrar_mentoria(nome, permissao):
                 else:
                     medias.loc[col] = mentoria_presenca[col].mean()
 
-        #mentoria_presenca = mentoria_presenca.append(medias, ignore_index=True)
         mentoria_presenca = pd.concat([mentoria_presenca, medias], ignore_index=True)
 
         mentoria_presenca.loc[len(mentoria_presenca) - 1, 'Nome Completo'] = 'Média'
