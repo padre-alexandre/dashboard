@@ -438,11 +438,11 @@ def mostrar_mentoria(nome, permissao):
 
         mentoria_presenca.loc[len(mentoria_presenca) - 1, 'Nome Completo'] = 'Média'
 
-        st.dataframe(mentoria_presenca)
+        
 
         filtro = (mentoria_presenca['Nome Completo'] == nome_selecionado) | (mentoria_presenca['Nome Completo'] == 'Média')
         mentoria_filtrada = mentoria_presenca[filtro]
-
+        st.dataframe(mentoria_filtrada)
         '''
         with st.container():
             col1, col2, col3 = st.columns([1,0.05,1]) 
