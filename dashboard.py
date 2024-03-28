@@ -221,7 +221,7 @@ def mostrar_botoes(permissao, nome):
             mostrar_mentoria(nome, permissao)
 
     elif permissao == "Mentor":
-
+        st.write('entrei')
         container = st.container()
         with container:
             cols = st.columns([1])  # Create a single-column layout
