@@ -10,6 +10,7 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from plotly.subplots import make_subplots
 from PIL import Image
+import numpy as np
 #from dashboard import get_estado, define_estado
 
 # If modifying these scopes, delete the file token.json.
@@ -195,7 +196,7 @@ def graficos_semana(presenca_por_semana):
 
             presenca_por_aluno = presenca_por_aluno[presenca_por_aluno['Presença'] > 0]
 
-            presenca_por_aluno['Presença'] = (presenca_por_aluno['Presença'].replace([pd.np.inf, -pd.np.inf, pd.np.nan], 0) * 100).astype(int)
+            presenca_por_aluno['Presença'] = (presenca_por_aluno['Presença'].replace([np.inf, -np.inf, np.nan], 0) * 100).astype(int)
 
             media_presenca = presenca_por_aluno['Presença'].mean()
 
