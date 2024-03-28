@@ -414,7 +414,7 @@ def mostrar_mentoria(nome, permissao):
         )
 
         mentoria_presenca = mentoria_presenca.dropna(subset=['Endereço de email'])
-
+        st.dataframe(mentoria_presenca)
         cor_texto_roxo = '#FFFFFF'
         cor_texto_laranja = '#000000'
 
