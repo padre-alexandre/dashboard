@@ -139,7 +139,7 @@ def mostrar_mentoria(nome, permissao):
     mentoria_presenca = ler_planilha("1Ew9AZCGJJXRRbJP2mxz_1UGymb-PX8yZHNUwrbumK70", "Mentoria | Streamlit | Presença dos alunos!A1:BU100")
 
     mentoria_presenca_area = ler_planilha("1Ew9AZCGJJXRRbJP2mxz_1UGymb-PX8yZHNUwrbumK70", "Mentoria | Streamlit | Alunos | Área!A1:S100")
-    st.write('entreiii')
+
     with st.container():
         col1, col2, col3 = st.columns([1, 1, 1])
 
