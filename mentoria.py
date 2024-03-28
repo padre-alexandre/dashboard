@@ -431,6 +431,8 @@ def mostrar_mentoria(nome, permissao):
                 mentoria_presenca[col] = mentoria_presenca[col].str.replace(',', '.').astype(float)
 
                 if col.startswith('1S'):
+                    aux = mentoria_presenca[col][mentoria_presenca[col] > 0].mean()
+                    st.write(aux)
                     medias.loc[col] = mentoria_presenca[col][mentoria_presenca[col] > 0].mean()
                 else:
                     medias.loc[col] = mentoria_presenca[col].mean()
