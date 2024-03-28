@@ -363,9 +363,9 @@ def tabela_professores(aulas_por_professor):
                             <th style="width: 220px; min-width: 220px; max-width: 220px; text-align: center;border-right: 1px solid rgba(158, 8, 158, 0.8);border-top: 0px solid rgba(158, 8, 158, 0.8);">Área</th>
                             <th style="width: 100px; min-width: 100px; max-width: 100px; text-align: center;border-right: 1px solid rgba(158, 8, 158, 0.8);border-top: 0px solid rgba(158, 8, 158, 0.8);">Número de aulas</th>
                             <th style="width: 100px; min-width: 100px; max-width: 100px; text-align: center;border-right: 1px solid rgba(158, 8, 158, 0.8);border-top: 0px solid rgba(158, 8, 158, 0.8);">Valor</th>
-                            <th style="width: 100px; min-width: 100px; max-width: 100px; text-align: center;border-right: 1px solid rgba(158, 8, 158, 0.8);border-top: 0px solid rgba(158, 8, 158, 0.8);">Presença</th>
-                            <th style="width: 100px; min-width: 100px; max-width: 100px; text-align: center;border-right: 1px solid rgba(158, 8, 158, 0.8);border-top: 0px solid rgba(158, 8, 158, 0.8);">Presença Manhã</th>
-                            <th style="width: 100px; min-width: 100px; max-width: 100px; text-align: center; border-top-right-radius: 10px;border-right: 0px solid rgba(158, 8, 158, 0.8);border-top: 0px solid rgba(158, 8, 158, 0.8)">Presença Tarde</th>
+                            <th style="width: 110px; min-width: 110px; max-width: 110px; text-align: center;border-right: 1px solid rgba(158, 8, 158, 0.8);border-top: 0px solid rgba(158, 8, 158, 0.8);">Presença</th>
+                            <th style="width: 110px; min-width: 110px; max-width: 110px; text-align: center;border-right: 1px solid rgba(158, 8, 158, 0.8);border-top: 0px solid rgba(158, 8, 158, 0.8);">Presença Manhã</th>
+                            <th style="width: 110px; min-width: 110px; max-width: 110px; text-align: center; border-top-right-radius: 10px;border-right: 0px solid rgba(158, 8, 158, 0.8);border-top: 0px solid rgba(158, 8, 158, 0.8)">Presença Tarde</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -373,7 +373,7 @@ def tabela_professores(aulas_por_professor):
     
 
     with st.container():
-        col1, col2, col3 = st.columns([1,5,0.01])
+        col1, col2, col3 = st.columns([0.01,5,0.01])
         with col1:
            st.write("")
         with col2:
@@ -387,9 +387,9 @@ def tabela_professores(aulas_por_professor):
                     <td style="width: 220px; min-width: 220px; max-width: 220px; text-align: center; border-bottom: 1px solid #9E089E; padding: 10px; height: 40px; border-left: 1px solid white; border-right: 1px solid white;">{2}</td>
                     <td style="width: 100px; min-width: 100px; max-width: 100px; text-align: center; border-bottom: 1px solid #9E089E; padding: 10px; height: 40px; border-left: 1px solid white; border-right: 1px solid white;">{3}</td>
                     <td style="width: 100px; min-width: 100px; max-width: 100px; text-align: center; border-bottom: 1px solid #9E089E; padding: 10px; height: 40px; border-left: 1px solid white; border-right: 1px solid white;">{4}</td>
-                    <td style="width: 100px; min-width: 100px; max-width: 100px; text-align: center; border-bottom: 1px solid #9E089E; padding: 10px; height: 40px; border-left: 1px solid white; border-right: 1px solid white;">{5}</td>
-                    <td style="width: 100px; min-width: 100px; max-width: 100px; text-align: center; border-bottom: 1px solid #9E089E; padding: 10px; height: 40px; border-left: 1px solid white; border-right: 1px solid white;">{6}</td>
-                    <td style="width: 100px; min-width: 100px; max-width: 100px; text-align: center; border-bottom: 1px solid #9E089E; padding: 10px; height: 40px; border-left: 1px solid white; border-right: 1px solid white;">{7}</td>
+                    <td style="width: 110px; min-width: 110px; max-width: 110px; text-align: center; border-bottom: 1px solid #9E089E; padding: 10px; height: 40px; border-left: 1px solid white; border-right: 1px solid white;">{5}</td>
+                    <td style="width: 110px; min-width: 110px; max-width: 110px; text-align: center; border-bottom: 1px solid #9E089E; padding: 10px; height: 40px; border-left: 1px solid white; border-right: 1px solid white;">{6}</td>
+                    <td style="width: 110px; min-width: 110px; max-width: 110px; text-align: center; border-bottom: 1px solid #9E089E; padding: 10px; height: 40px; border-left: 1px solid white; border-right: 1px solid white;">{7}</td>
                 </tr>
             """.format(row['Professor'], row['Email'], row['Área'], row['Número de aulas'], row['Valor'], row['Presença'], row['Presença Manhã'], row['Presença Tarde']), unsafe_allow_html=True)
         with col3:
