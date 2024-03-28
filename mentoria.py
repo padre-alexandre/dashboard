@@ -184,6 +184,7 @@ def mostrar_mentoria(nome, permissao):
             presenca_2_fase = mentoria_presenca_aluno['Última Semana 2F'][0]
             mentoria_presenca['Última Semana 1F'] = mentoria_presenca['Última Semana 1F'].str.replace(',', '.').astype(float)
             mentoria_presenca['Última Semana 2F'] = mentoria_presenca['Última Semana 2F'].str.replace(',', '.').astype(float)
+            st.dataframe(mentoria_presenca)
             mentoria_presenca_1fase = mentoria_presenca[mentoria_presenca['Última Semana 1F'] > 0].reset_index(drop = True).mean()
             mentoria_presenca_2fase = mentoria_presenca['Última Semana 2F'].reset_index(drop = True).mean()
             #mentoria_presenca_2fase = mentoria_presenca[mentoria_presenca['Última Semana 2F'] > 0].reset_index(drop = True).mean()
