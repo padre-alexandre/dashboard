@@ -243,22 +243,13 @@ def graficos_semana(valor_por_semana, aulas_por_professor):
             for coluna in colunas_ps:
                 aulas_por_professor[coluna] = pd.to_numeric(aulas_por_professor[coluna].str.replace(',', '.'), errors='coerce')
 
-
-            st.dataframe(aulas_por_professor)
-
             # Selecionar apenas as colunas numéricas
             numeric_cols = aulas_por_professor.select_dtypes(include='number')
 
-            st.dataframe(numeric_cols)
-            # Adicionar a coluna 'Área' ao DataFrame de colunas numéricas
             numeric_cols['Área'] = aulas_por_professor['Área']
-
-            # Agrupar por 'Área' e calcular a média das colunas numéricas
-            #grouped_df = numeric_cols.groupby('Área').mean().reset_index()
 
             aulas_por_professor2 = numeric_cols.groupby('Área').mean().reset_index()
 
-            st.dataframe(aulas_por_professor2)
 
             df_plot = aulas_por_professor2.copy()
 
