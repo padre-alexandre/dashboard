@@ -162,3 +162,7 @@ cython_debug/
 # Arquivos de credenciais sensíveis
 credentials.json
 token.json
+
+# Arquivos de credenciais sensíveis
+credentials.json
+token.json
