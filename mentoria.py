@@ -438,6 +438,8 @@ def mostrar_mentoria(nome, permissao):
 
         mentoria_presenca.loc[len(mentoria_presenca) - 1, 'Nome Completo'] = 'Média'
 
+        st.dataframe(mentoria_presenca)
+
         filtro = (mentoria_presenca['Nome Completo'] == nome_selecionado) | (mentoria_presenca['Nome Completo'] == 'Média')
         mentoria_filtrada = mentoria_presenca[filtro]
 
@@ -581,7 +583,7 @@ def mostrar_mentoria(nome, permissao):
                 colunas_ps2 = ['1S1', '1S2', '1S3', '1S4', '1S5', '1S6', '1S7', '1S8', '1S9', '1S10', '1S11', '1S12', '1S13', '1S14', '1S15', '1S16', '1S17', '1S18', '1S19', '1S20']
 
                 df_plot = mentoria_filtrada[colunas_ps]
-                st.dataframe(df_plot)
+
                 df_plot[colunas_ps2] = df_plot[colunas_ps2].replace(0, np.nan)
 
                 # Criando a figura
