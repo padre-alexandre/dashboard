@@ -50,7 +50,7 @@ def get_estado():
     return st.session_state.estado
 
 
-'''
+
 def ler_planilha(SAMPLE_SPREADSHEET_ID, SAMPLE_RANGE_NAME):
   """Shows basic usage of the Sheets API.
   Prints values from a sample spreadsheet.
@@ -93,8 +93,8 @@ def ler_planilha(SAMPLE_SPREADSHEET_ID, SAMPLE_RANGE_NAME):
     var = 1
 
   return values2
-'''
 
+'''
 def ler_planilha(SAMPLE_SPREADSHEET_ID, SAMPLE_RANGE_NAME):
     """Shows basic usage of the Sheets API. Prints values from a sample spreadsheet."""
     
@@ -134,7 +134,7 @@ def ler_planilha(SAMPLE_SPREADSHEET_ID, SAMPLE_RANGE_NAME):
         var = 1
 
     return values2
-
+'''
     
 
 def graficos_semana(presenca_por_semana):
