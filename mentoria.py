@@ -425,6 +425,7 @@ def mostrar_mentoria(nome, permissao):
         #medias = numeric_cols.groupby('Nome Completo').mean().reset_index()
         #medias['Nome Completo'] = medias['Nome Completo'].astype(str)
         #st.dataframwe()
+        st.dataframe(mentoria_presenca)
         for col in mentoria_presenca.columns:
 
             if mentoria_presenca[col].dtype == 'object' and mentoria_presenca[col].str.contains(',').any():
