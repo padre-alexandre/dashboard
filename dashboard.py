@@ -250,6 +250,8 @@ def mostrar_botoes(permissao, nome):
         #if botao_clicado2:
         #    mostrar_professores()
 
+        st.write('oi')
+
         if botao_clicado9:
             estado = get_estado()
             estado['pagina_atual'] = 'Mentoria'

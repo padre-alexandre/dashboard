@@ -164,7 +164,7 @@ def mostrar_mentoria(nome, permissao):
 
     if nome_selecionado !=  "Escolha o(a) aluno(a)":
 
-        st.write(nome_selecionado)
+        
         data_hoje_brasilia, hora_atual_brasilia = dia_hora()
         data_to_write = [[nome, permissao, data_hoje_brasilia, hora_atual_brasilia, get_estado()['pagina_atual'], nome_selecionado, opcao_periodo]]
         escrever_planilha("1Folwdg9mIwSxyzQuQlmwCoEPFq_sqC39MohQxx_J2_I", data_to_write, "Logs")
