@@ -222,6 +222,8 @@ def mostrar_mentoria(nome, permissao):
         media_presenca_2_fase_porc = mentoria_presenca_2fase * 100
         media_presenca_2_fase_porc_formatada = f"{media_presenca_2_fase_porc:.0f}%"
 
+        st.write(media_presenca_2_fase_porc_formatada)
+
         with st.container():
             col1, col2, col3, col4, col5, col6, col7, col8, col9 = st.columns([1, 0.1, 1, 0.1, 1, 0.1, 1, 0.1, 1])
             with col1:
