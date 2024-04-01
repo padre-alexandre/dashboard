@@ -164,6 +164,7 @@ def mostrar_mentoria(nome, permissao):
 
     if nome_selecionado !=  "Escolha o(a) aluno(a)":
 
+        st.write(nome_selecionado)
         data_hoje_brasilia, hora_atual_brasilia = dia_hora()
         data_to_write = [[nome, permissao, data_hoje_brasilia, hora_atual_brasilia, get_estado()['pagina_atual'], nome_selecionado, opcao_periodo]]
         escrever_planilha("1Folwdg9mIwSxyzQuQlmwCoEPFq_sqC39MohQxx_J2_I", data_to_write, "Logs")
@@ -221,8 +222,6 @@ def mostrar_mentoria(nome, permissao):
 
         media_presenca_2_fase_porc = mentoria_presenca_2fase * 100
         media_presenca_2_fase_porc_formatada = f"{media_presenca_2_fase_porc:.0f}%"
-
-        st.write(media_presenca_2_fase_porc_formatada)
 
         with st.container():
             col1, col2, col3, col4, col5, col6, col7, col8, col9 = st.columns([1, 0.1, 1, 0.1, 1, 0.1, 1, 0.1, 1])
