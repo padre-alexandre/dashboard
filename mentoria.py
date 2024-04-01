@@ -644,7 +644,7 @@ def mostrar_mentoria(nome, permissao):
         # Disciplinas
 
         disciplinas2 = [col for col in convert_columns2 if (mentoria_area_filtrada[col].apply(lambda x: x > 0 if isinstance(x, float) else False).all())]
-
+        st.dataframe(disciplinas2)
         # Criando a figura
         fig2 = go.Figure()
 
