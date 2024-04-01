@@ -665,6 +665,7 @@ def mostrar_mentoria(nome, permissao):
                                     textposition='inside',
                                     textfont=dict(color=cor_texto_laranja), 
                                     texttemplate='<b>%{text:.0%}</b>',
+                                    textangle=0,
                             offsetgroup='Média',  marker=dict(color='rgba(255, 167, 62, 0.6)', line=dict(color='#FFFFFF', width=2))))
 
         # Atualizando o layout
