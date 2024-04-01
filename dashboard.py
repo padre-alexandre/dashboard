@@ -240,8 +240,10 @@ def mostrar_botoes(permissao, nome):
 
         botoes_menu = [botao_clicado9]
 
-        #if all(not botao for botao in botoes_menu):
-            #mostrar_mentoria()
+        if all(not botao for botao in botoes_menu):
+            estado = get_estado()
+            estado['pagina_atual'] = 'Mentoria'
+            mostrar_mentoria(nome, permissao)
         #    mostrar_alunos()
 
         #if botao_clicado1:
@@ -250,15 +252,15 @@ def mostrar_botoes(permissao, nome):
         #if botao_clicado2:
         #    mostrar_professores()
 
-        st.write('oi')
-
+        #st.write('oi')
+        #st.write(botao_clicado9)
         if botao_clicado9:
             estado = get_estado()
             estado['pagina_atual'] = 'Mentoria'
             #data_hoje_brasilia, hora_atual_brasilia = dia_hora()
             #data_to_write = [[nome, permissao, data_hoje_brasilia, hora_atual_brasilia, get_estado()['pagina_atual']]]
             #escrever_planilha("1Folwdg9mIwSxyzQuQlmwCoEPFq_sqC39MohQxx_J2_I", data_to_write, "Logs")
-            st.write('oi2')
+            #st.write('oi2')
             mostrar_mentoria(nome, permissao)
 
 from tela_login import mostrar_tela_login
