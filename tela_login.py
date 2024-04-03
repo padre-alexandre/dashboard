@@ -113,15 +113,15 @@ def mostrar_tela_login():
     if st.session_state.logged_in:
         tipo_usuario = st.session_state.get("tipo_usuario", None)
         nome_usuario = st.session_state.get("nome_usuario", None)
-        email = st.session_state.get("Email", None)
-        return True, tipo_usuario, nome_usuario, email
+        Email = st.session_state.get("Email", None)
+        return True, tipo_usuario, nome_usuario, Email
 
     if not st.session_state.logged_in:
-        login_ok, tipo_usuario, nome_usuario, email = mostrar_formulario_login()
+        login_ok, tipo_usuario, nome_usuario, Email = mostrar_formulario_login()
         if login_ok:
             st.session_state.tipo_usuario = tipo_usuario
             st.session_state.nome_usuario = nome_usuario
-            st.session_state.Email = email
+            st.session_state.Email = Email
             i = 0
             if i == 0:
                 st.experimental_rerun()
