@@ -26,7 +26,7 @@ def get_estado():
         st.session_state.estado = define_estado()
     return st.session_state.estado
 
-def mostrar_professores(nome, permissao):
+def mostrar_professores(nome, permissao, email):
 
     estado = get_estado()
     ### Menu de Botões
@@ -73,13 +73,13 @@ def mostrar_professores(nome, permissao):
     if all(not botao for botao in botoes_menu):
         estado['pagina_atual'] = 'Professores - Controle das aulas'
         data_hoje_brasilia, hora_atual_brasilia = dia_hora()
-        data_to_write = [[nome, permissao, data_hoje_brasilia, hora_atual_brasilia, get_estado()['pagina_atual']]]
+        data_to_write = [[nome, permissao, data_hoje_brasilia, hora_atual_brasilia, get_estado()['pagina_atual'], "", "", email]]
         escrever_planilha("1Folwdg9mIwSxyzQuQlmwCoEPFq_sqC39MohQxx_J2_I", data_to_write, "Logs")
         mostrar_controle_aulas()
 
     if botao_clicado15:
         estado['pagina_atual'] = 'Professores - Controle das aulas'
         data_hoje_brasilia, hora_atual_brasilia = dia_hora()
-        data_to_write = [[nome, permissao, data_hoje_brasilia, hora_atual_brasilia, get_estado()['pagina_atual']]]
+        data_to_write = [[nome, permissao, data_hoje_brasilia, hora_atual_brasilia, get_estado()['pagina_atual'], "", "", email]]
         escrever_planilha("1Folwdg9mIwSxyzQuQlmwCoEPFq_sqC39MohQxx_J2_I", data_to_write, "Logs")
         mostrar_controle_aulas()

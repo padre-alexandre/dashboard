@@ -52,7 +52,7 @@ def mostrar_formulario_login():
     col1, col2, col3 = st.columns(3)
 
     # Input para o email na segunda coluna com fundo personalizado
-    email = col2.text_input("Email", key="email", value="")
+    email = col2.text_input("Email", key="emaill", value="")
 
     # Input para a senha na segunda coluna com fundo personalizado
     senha = col2.text_input("Senha", type="password", key="senha", value="")
@@ -85,15 +85,15 @@ def mostrar_formulario_login():
             if senha == senha_correspondente:
                 st.session_state.logged_in = True
                 st.success("Login bem-sucedido! Você pode acessar seu conteúdo aqui.")
-                return True, tabela_usuarios.loc[indice_email, "Permissão"], tabela_usuarios.loc[indice_email, "Nome"]
+                return True, tabela_usuarios.loc[indice_email, "Permissão"], tabela_usuarios.loc[indice_email, "Nome"], tabela_usuarios.loc[indice_email, "Email"]
             else:
                 st.error("Senha incorreta. Tente novamente.")
-                return False, "Sem Permissão", "Sem Nome"
+                return False, "Sem Permissão", "Sem Nome", "Sem Email"
         else:
             st.error("Email não encontrado. Verifique o email fornecido.")
-            return False, "Sem Permissão", "Sem Nome"
+            return False, "Sem Permissão", "Sem Nome",  "Sem Email"
 
-    return False, "Sem Permissão", "Sem Nome"
+    return False, "Sem Permissão", "Sem Nome",  "Sem Email"
         
 def mostrar_tela_login():
 
@@ -107,26 +107,31 @@ def mostrar_tela_login():
     if "nome_usuario" not in st.session_state:
         st.session_state.nome_usuario = "Sem Nome"
 
+    if "Email" not in st.session_state:
+        st.session_state.email = "Sem Email"
+
     if st.session_state.logged_in:
         tipo_usuario = st.session_state.get("tipo_usuario", None)
         nome_usuario = st.session_state.get("nome_usuario", None)
-        return True, tipo_usuario, nome_usuario
+        email = st.session_state.get("Email", None)
+        return True, tipo_usuario, nome_usuario, email
 
     if not st.session_state.logged_in:
-        login_ok, tipo_usuario, nome_usuario = mostrar_formulario_login()
+        login_ok, tipo_usuario, nome_usuario, email = mostrar_formulario_login()
         if login_ok:
             st.session_state.tipo_usuario = tipo_usuario
             st.session_state.nome_usuario = nome_usuario
+            st.session_state.Email = email
             i = 0
             if i == 0:
                 st.experimental_rerun()
                 i = i + 1
-            return True, st.session_state.tipo_usuario, st.session_state.nome_usuario
+            return True, st.session_state.tipo_usuario, st.session_state.nome_usuario, st.session_state.Email
         
-        return False, "Sem Permissão", "Sem Nome"
+        return False, "Sem Permissão", "Sem Nome", "Sem Email"
 
     else:
-        return True, st.session_state.tipo_usuario, st.session_state.nome_usuario
+        return True, st.session_state.tipo_usuario, st.session_state.nome_usuario, st.session_state.Email
 
 
 

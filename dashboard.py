@@ -49,7 +49,7 @@ def get_estado():
         st.session_state.estado = define_estado()
     return st.session_state.estado
 
-def mostrar_botoes(permissao, nome):
+def mostrar_botoes(permissao, nome, email):
 
     estado = get_estado()
     #st.write("Estado 1: "+str(estado))
@@ -134,17 +134,17 @@ def mostrar_botoes(permissao, nome):
             estado = get_estado()
             #st.write("Estado 3: "+str(estado))
             estado['pagina_atual'] = 'Alunos'
-            mostrar_alunos(nome, permissao)
+            mostrar_alunos(nome, permissao, email)
 
         if botao_clicado1 or estado['pagina_atual'] == 'Alunos':
             estado = get_estado()
             estado['pagina_atual'] = 'Alunos'
-            mostrar_alunos(nome, permissao)
+            mostrar_alunos(nome, permissao, email)
 
         if botao_clicado2 or estado['pagina_atual'] == 'Professores':
             estado = get_estado()
             estado['pagina_atual'] = 'Professores'
-            mostrar_professores(nome, permissao)
+            mostrar_professores(nome, permissao, email)
 
         if botao_clicado9 or estado['pagina_atual'] == 'Mentoria':
             estado = get_estado()
@@ -152,7 +152,7 @@ def mostrar_botoes(permissao, nome):
             #data_hoje_brasilia, hora_atual_brasilia = dia_hora()
             #data_to_write = [[nome, permissao, data_hoje_brasilia, hora_atual_brasilia, get_estado()['pagina_atual']]]
             #escrever_planilha("1Folwdg9mIwSxyzQuQlmwCoEPFq_sqC39MohQxx_J2_I", data_to_write, "Logs")
-            mostrar_mentoria(nome, permissao)
+            mostrar_mentoria(nome, permissao, email)
 
     elif permissao == "Time":
 
@@ -200,17 +200,17 @@ def mostrar_botoes(permissao, nome):
         if all(not botao for botao in botoes_menu):
             estado = get_estado()
             estado['pagina_atual'] = 'Alunos'
-            mostrar_alunos(nome, permissao)
+            mostrar_alunos(nome, permissao, email)
 
         if botao_clicado1:
             estado = get_estado()
             estado['pagina_atual'] = 'Alunos'
-            mostrar_alunos(nome, permissao)
+            mostrar_alunos(nome, permissao, email)
 
         if botao_clicado2:
             estado = get_estado()
             estado['pagina_atual'] = 'Professores'
-            mostrar_professores(nome, permissao)
+            mostrar_professores(nome, permissao, email)
         
         if botao_clicado9:
             estado = get_estado()
@@ -218,7 +218,7 @@ def mostrar_botoes(permissao, nome):
             #data_hoje_brasilia, hora_atual_brasilia = dia_hora()
             #data_to_write = [[nome, permissao, data_hoje_brasilia, hora_atual_brasilia, get_estado()['pagina_atual']]]
             #escrever_planilha("1Folwdg9mIwSxyzQuQlmwCoEPFq_sqC39MohQxx_J2_I", data_to_write, "Logs")
-            mostrar_mentoria(nome, permissao)
+            mostrar_mentoria(nome, permissao, email)
 
     elif permissao == "Mentor":
 
@@ -243,7 +243,7 @@ def mostrar_botoes(permissao, nome):
         if all(not botao for botao in botoes_menu):
             estado = get_estado()
             estado['pagina_atual'] = 'Mentoria'
-            mostrar_mentoria(nome, permissao)
+            mostrar_mentoria(nome, permissao, email)
         #    mostrar_alunos()
 
         #if botao_clicado1:
@@ -261,7 +261,7 @@ def mostrar_botoes(permissao, nome):
             #data_to_write = [[nome, permissao, data_hoje_brasilia, hora_atual_brasilia, get_estado()['pagina_atual']]]
             #escrever_planilha("1Folwdg9mIwSxyzQuQlmwCoEPFq_sqC39MohQxx_J2_I", data_to_write, "Logs")
             #st.write('oi2')
-            mostrar_mentoria(nome, permissao)
+            mostrar_mentoria(nome, permissao, email)
 
 from tela_login import mostrar_tela_login
 
@@ -270,13 +270,13 @@ if __name__ == "__main__":
     #user_agent = get_user_agent()
     #st.write("User Agent:", user_agent)
     
-    login, permissao, nome = mostrar_tela_login()
+    login, permissao, nome, email = mostrar_tela_login()
 
     if login:
-        mostrar_botoes(permissao, nome)
+        mostrar_botoes(permissao, nome, email)
         if get_estado()['pagina_atual'] == 'Página Inicial':
             data_hoje_brasilia, hora_atual_brasilia = dia_hora()
-            data_to_write = [[nome, permissao, data_hoje_brasilia, hora_atual_brasilia, get_estado()['pagina_atual']]]
+            data_to_write = [[nome, permissao, data_hoje_brasilia, hora_atual_brasilia, get_estado()['pagina_atual'], "", "", email]]
             escrever_planilha("1Folwdg9mIwSxyzQuQlmwCoEPFq_sqC39MohQxx_J2_I", data_to_write, "Logs")
 
 

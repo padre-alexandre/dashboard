@@ -127,7 +127,7 @@ def ler_planilha(SAMPLE_SPREADSHEET_ID, SAMPLE_RANGE_NAME):
 '''
 
 
-def mostrar_mentoria(nome, permissao):
+def mostrar_mentoria(nome, permissao, email):
 
     estado = get_estado()
     #st.write(estado)
@@ -159,14 +159,14 @@ def mostrar_mentoria(nome, permissao):
     if nome_selecionado == "Escolha o(a) aluno(a)":
         st.warning("Por favor, selecione um(a) aluno(a)!")
         data_hoje_brasilia, hora_atual_brasilia = dia_hora()
-        data_to_write = [[nome, permissao, data_hoje_brasilia, hora_atual_brasilia, get_estado()['pagina_atual'],"Por favor, selecione um(a) aluno(a)!"]]
+        data_to_write = [[nome, permissao, data_hoje_brasilia, hora_atual_brasilia, get_estado()['pagina_atual'],"Por favor, selecione um(a) aluno(a)!", "", email]]
         escrever_planilha("1Folwdg9mIwSxyzQuQlmwCoEPFq_sqC39MohQxx_J2_I", data_to_write, "Logs")
 
     if nome_selecionado !=  "Escolha o(a) aluno(a)":
 
         
         data_hoje_brasilia, hora_atual_brasilia = dia_hora()
-        data_to_write = [[nome, permissao, data_hoje_brasilia, hora_atual_brasilia, get_estado()['pagina_atual'], nome_selecionado, opcao_periodo]]
+        data_to_write = [[nome, permissao, data_hoje_brasilia, hora_atual_brasilia, get_estado()['pagina_atual'], nome_selecionado, opcao_periodo, email]]
         escrever_planilha("1Folwdg9mIwSxyzQuQlmwCoEPFq_sqC39MohQxx_J2_I", data_to_write, "Logs")
 
         # Linha com estilo de margem ajustado
