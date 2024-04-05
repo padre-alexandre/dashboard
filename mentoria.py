@@ -735,7 +735,7 @@ def mostrar_mentoria(nome, permissao, email):
             unsafe_allow_html=True
         ) 
 
-        mentoria_simulado = ler_planilha("1Ew9AZCGJJXRRbJP2mxz_1UGymb-PX8yZHNUwrbumK70", "Mentoria | Streamlit | Simulado!A1:BH100")
+        mentoria_simulado = ler_planilha("1Ew9AZCGJJXRRbJP2mxz_1UGymb-PX8yZHNUwrbumK70", "Mentoria | Streamlit | Simulado!A1:BK100")
 
         lista_simulados = ['S1', 'S2', 'S3']
 
@@ -1829,6 +1829,81 @@ def mostrar_mentoria(nome, permissao, email):
 
                     # Mostrando o gráfico no Streamlit
                     st.plotly_chart(fig2, use_container_width=True)
+
+        with st.container():
+            col1, col2, col3, col4, col5 = st.columns([1,0.05,1,0.05,1]) 
+            with col3:
+
+                st.markdown('<div style="height: 50px;"></div>', unsafe_allow_html=True)
+
+                # Adiciona uma caixa colorida acima do primeiro gráfico com texto dentro
+                st.markdown(
+                    """
+                    <div style="background-color: rgba(158, 8, 158, 0.8); color: white; padding: 10px; border-top-left-radius: 10px; border-top-right-radius: 10px; text-align: center;">
+                        Nota de Redação x Média
+                    </div>
+                    """,
+                    unsafe_allow_html=True
+                )
+
+                # Criando a lista colunas_ps a partir da lista de simulados
+                colunas_ps = ['Nome Completo'] + [f'{simulado} - Redação' for simulado in lista_simulados]
+                colunas_ps2 = [coluna for coluna in colunas_ps if coluna.endswith(' - Redação')]
+                colunas_ps3 = [coluna.split(' - ')[0] for coluna in colunas_ps2]
+
+                mentoria_simulado_filtrada = mentoria_simulado[filtro2]
+
+                df_plot = mentoria_simulado_filtrada[colunas_ps]
+
+                df_plot[colunas_ps2] = df_plot[colunas_ps2].replace(0, np.nan)
+
+                # Criar um gráfico de linha
+                fig2 = go.Figure()
+
+                color_aluno = '#9E089E'
+                color_media = '#FFA73E'
+                
+                for index, row in mentoria_simulado_filtrada.iterrows():
+                    if row['Nome Completo'] == 'Média':
+                        continue
+                    fig2.add_trace(go.Bar(name=row['Nome Completo'], x=colunas_ps3, y=row[colunas_ps2], 
+                                        text= row[colunas_ps2],
+                                    textposition='inside',
+                                    textfont=dict(color=cor_texto_roxo), 
+                                    texttemplate='<b>%{text:.0f}</b>',
+                                        offsetgroup=row['Nome Completo'], marker=dict(color='rgba(158, 8, 158, 0.6)', line=dict(color='#FFFFFF', width=2))))
+
+                # Adicionando a barra da média
+                fig2.add_trace(go.Bar(name='Média', x=colunas_ps3, y=mentoria_simulado_filtrada.loc[mentoria_simulado_filtrada['Nome Completo'] == 'Média', colunas_ps2].values[0],
+                                    text=mentoria_simulado_filtrada.loc[mentoria_simulado_filtrada['Nome Completo'] == 'Média', colunas_ps2].values[0],  # Adiciona o texto (valores) dentro das colunas
+                                    textposition='inside',
+                                    textfont=dict(color=cor_texto_laranja), 
+                                    texttemplate='<b>%{text:.0f}</b>',
+                                    offsetgroup='Média',  marker=dict(color='rgba(255, 167, 62, 0.6)', line=dict(color='#FFFFFF', width=2))))
+
+                # Atualizando o layout
+                fig2.update_layout(
+                    #title='Notas por Disciplina',
+                    xaxis_title='Simulado',
+                    yaxis_title='Nota',
+                    barmode='group',  # Agrupa as barras
+                    yaxis=dict(range=[0, 1000]),  # Definindo o intervalo do eixo y
+                    legend=dict(
+                    orientation="h",
+                    yanchor="top",
+                    y=1.1,
+                    xanchor="center",
+                    x=0.5),
+                    #yaxis_tickformat=".0",
+                    height=400, 
+                    width=1200, 
+                    margin=dict(l=5, r=5, b=50, t=50, pad=0),
+                )
+
+                fig2.update_yaxes(title_text='Nota', tickformat=',.0f')
+
+                # Mostrando o gráfico no Streamlit
+                st.plotly_chart(fig2, use_container_width=True)
 
 
                         
