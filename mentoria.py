@@ -735,7 +735,7 @@ def mostrar_mentoria(nome, permissao, email):
             unsafe_allow_html=True
         ) 
 
-        mentoria_simulado = ler_planilha("1Ew9AZCGJJXRRbJP2mxz_1UGymb-PX8yZHNUwrbumK70", "Mentoria | Streamlit | Simulado!A1:CD100")
+        mentoria_simulado = ler_planilha("1Ew9AZCGJJXRRbJP2mxz_1UGymb-PX8yZHNUwrbumK70", "Mentoria | Streamlit | Simulado!A1:CL100")
 
         lista_simulados = ['S1', 'S2', 'S3','S4']
 
@@ -1925,6 +1925,170 @@ def mostrar_mentoria(nome, permissao, email):
 
                 # Mostrando o gráfico no Streamlit
                 st.plotly_chart(fig2, use_container_width=True)
+
+            st.markdown(
+                        """
+                        <div style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-top: -20px; margin-bottom: -40px;">
+                            <div style="font-size: 50px; font-weight: bold; text-transform: uppercase; color: #9E089E;">Presença nas aulas X Simulado de 1ª fase</div>
+                        </div>
+                        """,
+                        unsafe_allow_html=True
+                    )
+
+            st.markdown('<div style="height: 50px;"></div>', unsafe_allow_html=True)
+
+            with st.container():
+                col1, col2, col3 = st.columns([0.2,0.5,0.2]) 
+                with col2:
+
+                    # Adiciona uma caixa colorida acima do primeiro gráfico com texto dentro
+                    st.markdown(
+                        """
+                        <div style="background-color: rgba(158, 8, 158, 0.8); color: white; padding: 10px; border-top-left-radius: 10px; border-top-right-radius: 10px; text-align: center;">
+                            Presença x Simulado
+                        </div>
+                        """,
+                        unsafe_allow_html=True
+                    )
+
+                    disciplinas_simulado  = ['Matemática A','Matemática B','Matemática C','História','Geografia','Linguagens','Redação','Biologia','Física','Química']
+
+                    colunas_combinadas = ['Nome Completo']
+
+                    for simulado in lista_simulados:
+                        for disciplina in disciplinas_simulado:
+                            coluna = f"{simulado} - {disciplina}"
+                            if coluna in mentoria_simulado_filtrada.columns:
+                                colunas_combinadas.append(coluna)
+
+                    mentoria_simulado_filtrada2 = mentoria_simulado_filtrada[colunas_combinadas]
+
+                    medias_por_disciplina = {}
+
+                    for disciplina in disciplinas_simulado:
+                        colunas_disciplina = [f"{simulado} - {disciplina}" for simulado in lista_simulados]
+
+                        valores_filtrados = mentoria_simulado_filtrada2[colunas_disciplina].apply(lambda x: x[x > 0], axis=1)
+
+                        media_disciplina = valores_filtrados.mean(axis=1)
+
+                        if disciplina == 'Redação':
+                            media_disciplina = media_disciplina/1000
+
+                        medias_por_disciplina[f"Simulado - {disciplina}"] = media_disciplina
+
+                    for coluna, valores in medias_por_disciplina.items():
+                        mentoria_simulado_filtrada2[coluna] = valores
+
+                    mentoria_presenca_filtrada = mentoria_area_filtrada.copy()
+
+                    for coluna in disciplinas_simulado:
+                        mentoria_presenca_filtrada.rename(columns={coluna: f"Presença - {coluna}"}, inplace=True)
+
+                    mentoria_presenca_filtrada.rename(columns = {'Nome':'Nome Completo'}, inplace = True)
+
+                    mentoria_presenca_simulado_filtrada = pd.merge(mentoria_presenca_filtrada, mentoria_simulado_filtrada2, on = 'Nome Completo', how = 'inner')
+
+                    colunas_desejadas = [coluna for coluna in mentoria_presenca_simulado_filtrada.columns if coluna.startswith('Simulado') or coluna.startswith('Presença') or 'Nome Completo' in coluna]
+
+                    mentoria_presenca_simulado_filtrada2 = mentoria_presenca_simulado_filtrada[colunas_desejadas]
+
+                    mentoria_presenca_simulado_filtrada_aluno = mentoria_presenca_simulado_filtrada2.iloc[1][1:]
+
+                    colunas_presenca = sorted([coluna for coluna in mentoria_presenca_simulado_filtrada_aluno.index if 'Presença' in coluna])
+                    colunas_simulado = sorted([coluna for coluna in mentoria_presenca_simulado_filtrada_aluno.index if 'Simulado' in coluna])
+
+                    mentoria_presenca_simulado_filtrada_aluno2 = pd.DataFrame({
+                        'Presença': mentoria_presenca_simulado_filtrada_aluno[colunas_presenca].values,
+                        'Simulado': mentoria_presenca_simulado_filtrada_aluno[colunas_simulado].values
+                    }, index=[coluna.split(' - ')[1] for coluna in colunas_presenca])
+
+                    mentoria_presenca_simulado_filtrada_aluno2['Presença'] = pd.to_numeric(mentoria_presenca_simulado_filtrada_aluno2['Presença'], errors='coerce')
+
+                    mentoria_presenca_simulado_filtrada_aluno2['Presença'] = mentoria_presenca_simulado_filtrada_aluno2['Presença'].fillna(0)
+
+                    mentoria_presenca_simulado_filtrada_aluno3 = mentoria_presenca_simulado_filtrada_aluno2[mentoria_presenca_simulado_filtrada_aluno2['Presença'] > 0]
+
+                    presenca = mentoria_presenca_simulado_filtrada_aluno3['Presença'].tolist()
+                    simulado = mentoria_presenca_simulado_filtrada_aluno3['Simulado'].tolist()
+
+                    mentoria_presenca_simulado_filtrada_media = mentoria_presenca_simulado_filtrada2.iloc[0][1:]
+
+                    #colunas_presenca = sorted([coluna for coluna in mentoria_presenca_simulado_filtrada_aluno.index if 'Presença' in coluna])
+                    #colunas_simulado = sorted([coluna for coluna in mentoria_presenca_simulado_filtrada_aluno.index if 'Simulado' in coluna])
+
+                    mentoria_presenca_simulado_filtrada_media2 = pd.DataFrame({
+                        'Presença': mentoria_presenca_simulado_filtrada_media[colunas_presenca].values,
+                        'Simulado': mentoria_presenca_simulado_filtrada_media[colunas_simulado].values
+                    }, index=[coluna.split(' - ')[1] for coluna in colunas_presenca])
+
+                    mentoria_presenca_simulado_filtrada_media2['Presença'] = pd.to_numeric(mentoria_presenca_simulado_filtrada_media2['Presença'], errors='coerce')
+
+                    mentoria_presenca_simulado_filtrada_media2['Presença'] = mentoria_presenca_simulado_filtrada_media2['Presença'].fillna(0)
+
+                    mentoria_presenca_simulado_filtrada_media3 = mentoria_presenca_simulado_filtrada_media2[mentoria_presenca_simulado_filtrada_media2['Presença'] > 0]
+
+                    presenca_media = mentoria_presenca_simulado_filtrada_media3['Presença'].tolist()
+                    simulado_media = mentoria_presenca_simulado_filtrada_media3['Simulado'].tolist()
+
+                    fig = go.Figure()
+
+                    # Adicionando os pontos de dispersão para cada disciplina
+                    for disciplina, x, y in zip(disciplinas_simulado, presenca, simulado):
+                        # Adicionando os pontos de dispersão
+                        fig.add_trace(go.Scatter(
+                            x=[x], 
+                            y=[y], 
+                            mode='markers', 
+                            name=disciplina, 
+                            marker_color='#9E089E',
+                            marker_size=9  # Tamanho dos pontos aumentado
+                        ))
+                        # Adicionando o texto da disciplina acima de cada ponto
+                        fig.add_trace(go.Scatter(
+                            x=[x],
+                            y=[y + 0.01],
+                            mode='text',
+                            text=[disciplina],
+                            textposition='top center',  # Nome da disciplina posicionado acima de cada ponto
+                            textfont=dict(size=9)
+                        ))
+                    '''
+                    for disciplina, x, y in zip(disciplinas_simulado, presenca_media, simulado_media):
+                        # Adicionando os pontos de dispersão
+                        fig.add_trace(go.Scatter(
+                            x=[x], 
+                            y=[y], 
+                            mode='markers', 
+                            name=disciplina, 
+                            marker_color='#FFA73E',
+                            marker_size=8  # Tamanho dos pontos aumentado
+                        ))
+                        # Adicionando o texto da disciplina acima de cada ponto
+                        fig.add_trace(go.Scatter(
+                            x=[x],
+                            y=[y + 0.02],
+                            mode='text',
+                            text=[disciplina],
+                            textposition='top center',  # Nome da disciplina posicionado acima de cada ponto
+                            textfont=dict(size=8)
+                        ))
+                    '''
+                    fig.update_layout(
+                        xaxis=dict(title='Presença', range=[0, 1.02]),
+                        yaxis=dict(title='Simulado', range=[0, 1.02]),
+                        showlegend=False,
+                        height=700, 
+                        width=400,
+                    )
+
+                    fig.update_yaxes(tickformat=',.0%')
+                    fig.update_xaxes(tickformat=',.0%')
+
+                    #st.markdown(f"<p style='text-align: center;'><br>🟣 {nome_selecionado}&nbsp;&nbsp;&nbsp;&nbsp;🟠 Média</p>", unsafe_allow_html=True)
+
+                    st.plotly_chart(fig, use_container_width=True)
+
 
 
                         
