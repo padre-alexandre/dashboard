@@ -735,9 +735,9 @@ def mostrar_mentoria(nome, permissao, email):
             unsafe_allow_html=True
         ) 
 
-        mentoria_simulado = ler_planilha("1Ew9AZCGJJXRRbJP2mxz_1UGymb-PX8yZHNUwrbumK70", "Mentoria | Streamlit | Simulado!A1:CL100")
+        mentoria_simulado = ler_planilha("1Ew9AZCGJJXRRbJP2mxz_1UGymb-PX8yZHNUwrbumK70", "Mentoria | Streamlit | Simulado!A1:DG100")
 
-        lista_simulados = ['S1', 'S2', 'S3','S4']
+        lista_simulados = ['S1', 'S2', 'S3','S4','S5']
 
         for col in mentoria_simulado.columns:
             if mentoria_simulado[col].dtype == 'object' and mentoria_simulado[col].str.contains(',').any() and not mentoria_simulado[col].str.contains('a').any():
@@ -861,6 +861,7 @@ def mostrar_mentoria(nome, permissao, email):
                                     textposition='inside',
                                     textfont=dict(color=cor_texto_roxo), 
                                     texttemplate='<b>%{text}</b>',
+                                    textangle=0,
                                         offsetgroup=row['Nome Completo'], marker=dict(color='rgba(158, 8, 158, 0.6)', line=dict(color='#FFFFFF', width=2))))
 
                 # Adicionando a barra da média
@@ -869,6 +870,7 @@ def mostrar_mentoria(nome, permissao, email):
                                     textposition='inside',
                                     textfont=dict(color=cor_texto_laranja), 
                                     texttemplate='<b>%{text}</b>',
+                                    textangle=0,
                                     offsetgroup='Média',  marker=dict(color='rgba(255, 167, 62, 0.6)', line=dict(color='#FFFFFF', width=2))))
 
                 # Atualizando o layout
@@ -932,6 +934,7 @@ def mostrar_mentoria(nome, permissao, email):
                                     textposition='inside',
                                     textfont=dict(color=cor_texto_roxo), 
                                     texttemplate='<b>%{text}</b>',
+                                    textangle=0,
                                             offsetgroup=row['Nome Completo'], marker=dict(color='rgba(158, 8, 158, 0.6)', line=dict(color='#FFFFFF', width=2))))
 
                 # Adicionando a barra da média
@@ -940,6 +943,7 @@ def mostrar_mentoria(nome, permissao, email):
                                     textposition='inside',
                                     textfont=dict(color=cor_texto_laranja), 
                                     texttemplate='<b>%{text}</b>',
+                                    textangle=0,
                                     offsetgroup='Média',  marker=dict(color='rgba(255, 167, 62, 0.6)', line=dict(color='#FFFFFF', width=2))))
 
                 # Atualizando o layout
@@ -1005,6 +1009,7 @@ def mostrar_mentoria(nome, permissao, email):
                                     textposition='inside',
                                     textfont=dict(color=cor_texto_roxo), 
                                     texttemplate='<b>%{text}</b>',
+                                    textangle=0,
                                     offsetgroup=row['Nome Completo'], marker=dict(color='rgba(158, 8, 158, 0.6)', line=dict(color='#FFFFFF', width=2))))
 
                     # Adicionando a barra da média
@@ -1013,6 +1018,7 @@ def mostrar_mentoria(nome, permissao, email):
                                         textposition='inside',
                                         textfont=dict(color=cor_texto_laranja), 
                                         texttemplate='<b>%{text}</b>',
+                                        textangle=0,
                                         offsetgroup='Média',  marker=dict(color='rgba(255, 167, 62, 0.6)', line=dict(color='#FFFFFF', width=2))))
 
                     # Atualizando o layout
@@ -1074,6 +1080,7 @@ def mostrar_mentoria(nome, permissao, email):
                                     textposition='inside',
                                     textfont=dict(color=cor_texto_roxo), 
                                     texttemplate='<b>%{text}</b>',
+                                    textangle=0,
                                             offsetgroup=row['Nome Completo'], marker=dict(color='rgba(158, 8, 158, 0.6)', line=dict(color='#FFFFFF', width=2))))
 
                     # Adicionando a barra da média
@@ -1082,6 +1089,7 @@ def mostrar_mentoria(nome, permissao, email):
                                         textposition='inside',
                                         textfont=dict(color=cor_texto_laranja), 
                                         texttemplate='<b>%{text}</b>',
+                                        textangle=0,
                                         offsetgroup='Média',  marker=dict(color='rgba(255, 167, 62, 0.6)', line=dict(color='#FFFFFF', width=2))))
 
                     # Atualizando o layout
