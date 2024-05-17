@@ -177,7 +177,7 @@ def mostrar_mentoria(nome, permissao, email):
             """,
             unsafe_allow_html=True
         )
-
+        
         mentoria_presenca_aluno = mentoria_presenca[mentoria_presenca['Nome Completo'] == nome_selecionado].reset_index(drop = True)
 
         if opcao_periodo == 'Última semana':
@@ -735,9 +735,9 @@ def mostrar_mentoria(nome, permissao, email):
             unsafe_allow_html=True
         ) 
 
-        mentoria_simulado = ler_planilha("1Ew9AZCGJJXRRbJP2mxz_1UGymb-PX8yZHNUwrbumK70", "Mentoria | Streamlit | Simulado!A1:DG100")
+        mentoria_simulado = ler_planilha("1Ew9AZCGJJXRRbJP2mxz_1UGymb-PX8yZHNUwrbumK70", "Mentoria | Streamlit | Simulado!A1:EB100")
 
-        lista_simulados = ['S1', 'S2', 'S3','S4','S5']
+        lista_simulados = ['S1', 'S2', 'S3','S4','S5','S6']
 
         for col in mentoria_simulado.columns:
             if mentoria_simulado[col].dtype == 'object' and mentoria_simulado[col].str.contains(',').any() and not mentoria_simulado[col].str.contains('a').any():
